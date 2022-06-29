@@ -13,4 +13,7 @@
     "strictPropertyInitialization": false,
     "baseUrl": ".",
   },
+  "include": [
+    "src/**/*.d.ts",
+  ],
 }

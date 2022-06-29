@@ -26,3 +26,6 @@ and then simply create a project by using your alias.
 2. asks for directory: playground
 3. asks for folder name: example
 4. installs dependencies and starts vscode for you :)
+
+
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
