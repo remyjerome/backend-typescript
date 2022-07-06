@@ -1,19 +1,26 @@
 import mongoose from "mongoose"
 
-export const subscriberModel = new mongoose.Schema({
+export interface ISubscriber {
+  _id: string
+  name: string
+  channel: string
+  createdAt: Date
+}
+
+export const subscriberModel = new mongoose.Schema<ISubscriber>({
   name: {
     type: String,
     required: true,
   },
-  subscribedToChannel: {
+  channel: {
     type: String,
     required: true,
   },
-  subscribeDate: {
+  createdAt: {
     type: Date,
     required: true,
     default: Date.now,
   },
 })
 
-export type Subscriber = typeof subscriberModel
+// export type Subscriber = typeof subscriberModel
