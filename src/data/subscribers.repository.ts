@@ -1,8 +1,6 @@
-import { injectable } from "inversify"
 import { DBContext } from "@data/db.context"
 import { ISubscriber } from "./subscribers.models"
 
-@injectable()
 export class SubscribersRepository {
   constructor(private readonly _dbContext: DBContext) {}
 

@@ -1,4 +1,3 @@
-import { injectable } from "inversify"
 import { SubscribersRepository } from "@data/subscribers.repository"
 import {
   CreateSubscriberDto,
@@ -8,7 +7,6 @@ import {
 } from "@logic/dtos"
 import { CouldNotFindSubscriberException } from "@logic/exceptions"
 
-@injectable()
 export class SubscribersService {
   constructor(private readonly _subscribersRepo: SubscribersRepository) {}
 

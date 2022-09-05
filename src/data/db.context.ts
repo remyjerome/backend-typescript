@@ -1,9 +1,7 @@
-import { injectable } from "inversify"
 import mongoose from "mongoose"
 
 import { ISubscriber, subscriberModel } from "@data/subscribers.models"
 
-@injectable()
 export class DBContext {
   private _db: typeof mongoose
 
