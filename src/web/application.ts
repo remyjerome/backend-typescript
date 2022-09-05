@@ -1,20 +1,13 @@
-import { SubscribersRepository } from "@data/subscribers.repository"
-import { SubscribersService } from "@logic/subscribers.service"
 import express from "express"
+
 import { DBContext } from "@data/db.context"
+import { ValidationException } from "@logic/exceptions"
 import { Application } from "@web/lib/abstract-application"
 import { BaseHttpResponse } from "@web/lib/base-http-response"
-
-import { ValidationException } from "@logic/exceptions"
-
 import { routerSubscribers } from "@web/router/index"
 
 export class App extends Application {
   async setup() {
-    // const _db = this.container.get(DBContext)
-
-    // await _db.connect()
-
     const db = new DBContext()
 
     await db.connect()

@@ -1,14 +1,15 @@
 import express, { Router } from "express"
-import { SubscribersRepository } from "@data/subscribers.repository"
-import { SubscribersService } from "@logic/subscribers.service"
+
 import { DBContext } from "@data/db.context"
-import { SubscribersController } from "@web/controllers/subscribers.controller"
-import { ValidateRequestMiddleware } from "@web/lib/middlewares"
+import { SubscribersRepository } from "@data/subscribers.repository"
 import {
   CreateSubscriberDto,
   GetOneSubscriberDto,
   UpdateSubscriberDto,
 } from "@logic/dtos/subscribers"
+import { SubscribersService } from "@logic/subscribers.service"
+import { SubscribersController } from "@web/controllers/subscribers.controller"
+import { ValidateRequestMiddleware } from "@web/lib/middlewares"
 
 const router = express.Router()
 

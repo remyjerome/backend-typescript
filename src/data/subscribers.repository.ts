@@ -1,23 +1,24 @@
 import { DBContext } from "@data/db.context"
+
 import { ISubscriber } from "./subscribers.models"
 
 export class SubscribersRepository {
-  constructor(private readonly _dbContext: DBContext) {}
+  constructor(private readonly dbContext: DBContext) {}
 
   async all() {
-    return this._dbContext.subscriber.find({})
+    return this.dbContext.subscriber.find({})
   }
 
   async findOne(id: ISubscriber["_id"]) {
-    return this._dbContext.subscriber.findById(id)
+    return this.dbContext.subscriber.findById(id)
   }
 
   async create(entity: Partial<ISubscriber>) {
-    return this._dbContext.subscriber.create<any>(entity)
+    return this.dbContext.subscriber.create<any>(entity)
   }
 
   async updateOne(payload: Partial<ISubscriber>) {
-    const foundSubscriber = await this._dbContext.subscriber.findById(
+    const foundSubscriber = await this.dbContext.subscriber.findById(
       payload._id
     )
 
@@ -34,6 +35,6 @@ export class SubscribersRepository {
   }
 
   async deleteOne(id: string) {
-    return this._dbContext.subscriber.deleteOne({ _id: id })
+    return this.dbContext.subscriber.deleteOne({ _id: id })
   }
 }

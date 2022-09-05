@@ -1,9 +1,10 @@
 import { Request, Response } from "express"
+
 import { SubscribersService } from "@logic/subscribers.service"
 import { BaseHttpResponse } from "@web/lib/base-http-response"
 
 export class SubscribersController {
-  constructor(public readonly _service: SubscribersService) {
+  constructor(public readonly service: SubscribersService) {
     this.index = this.index.bind(this)
     this.show = this.show.bind(this)
     this.store = this.store.bind(this)
@@ -12,25 +13,25 @@ export class SubscribersController {
   }
 
   async index(req: Request, res: Response) {
-    const subscribers = await this._service.all()
+    const subscribers = await this.service.all()
     const response = BaseHttpResponse.sucess(subscribers)
     return res.json(response)
   }
 
   async show(req: Request, res: Response) {
-    const subscriber = await this._service.findOne(req.body)
+    const subscriber = await this.service.findOne(req.body)
     const response = BaseHttpResponse.sucess(subscriber)
     res.json(response)
   }
 
   async store(req: Request, res: Response) {
-    const subscriber = await this._service.create(req.body)
+    const subscriber = await this.service.create(req.body)
     const response = BaseHttpResponse.sucess(subscriber, 201)
     res.status(response.statusCode).json(response)
   }
 
   async update(req: Request, res: Response) {
-    const updatedSubscriber = await this._service.updateOne(req.body)
+    const updatedSubscriber = await this.service.updateOne(req.body)
 
     const response = BaseHttpResponse.sucess(updatedSubscriber, 204)
 
@@ -41,7 +42,7 @@ export class SubscribersController {
   }
 
   async destroy(req: Request, res: Response) {
-    const deleted = await this._service.deleteOne(req.body)
+    const deleted = await this.service.deleteOne(req.body)
     const response = BaseHttpResponse.sucess(deleted, 204)
     res.sendStatus(response.statusCode).json(response)
   }

@@ -1,10 +1,11 @@
+import { NextFunction, Request, Response } from "express"
+
 import { BaseMiddleware } from "@web/lib/base-middleware"
-import { Request, Response, NextFunction } from "express"
 
 export class ValidateRequestMiddleware extends BaseMiddleware {
   constructor(
-    private readonly _DtoClass: any,
-    private readonly _withParams = false
+    private readonly DtoClass: any,
+    private readonly withParams = false
   ) {
     super()
   }
@@ -14,13 +15,13 @@ export class ValidateRequestMiddleware extends BaseMiddleware {
     _: Response,
     next: NextFunction
   ): void | Promise<void> {
-    if (this._withParams) {
+    if (this.withParams) {
       req.body = {
         ...req.body,
         ...req.params,
       }
     }
-    req.body = this._DtoClass.from(req.body)
+    req.body = this.DtoClass.from(req.body)
     next()
   }
 

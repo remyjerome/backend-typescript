@@ -8,16 +8,16 @@ import {
 import { CouldNotFindSubscriberException } from "@logic/exceptions"
 
 export class SubscribersService {
-  constructor(private readonly _subscribersRepo: SubscribersRepository) {}
+  constructor(private readonly subscribersRepo: SubscribersRepository) {}
 
   async all() {
-    const subscribers = await this._subscribersRepo.all()
+    const subscribers = await this.subscribersRepo.all()
 
     return SubscriberDto.fromMany(subscribers)
   }
 
   async findOne(getOneSubscriberDto: GetOneSubscriberDto) {
-    const foundSubscriber = await this._subscribersRepo.findOne(
+    const foundSubscriber = await this.subscribersRepo.findOne(
       getOneSubscriberDto.id
     )
 
@@ -29,17 +29,17 @@ export class SubscribersService {
   }
 
   async create(createSubscriberDto: CreateSubscriberDto) {
-    const createSubscriber = await this._subscribersRepo.create(
+    const createSubscriber = await this.subscribersRepo.create(
       createSubscriberDto
     )
     return SubscriberDto.from(createSubscriber)
   }
 
   async updateOne(updateSubscriberDto: UpdateSubscriberDto) {
-    return this._subscribersRepo.updateOne(updateSubscriberDto)
+    return this.subscribersRepo.updateOne(updateSubscriberDto)
   }
 
   async deleteOne({ id }: GetOneSubscriberDto) {
-    return this._subscribersRepo.deleteOne(id)
+    return this.subscribersRepo.deleteOne(id)
   }
 }
